@@ -1,0 +1,37 @@
+﻿using Dapper;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SQLite;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Сalories_Calculator
+{
+    public class SqliteDataAccess
+    {
+        public static List<FoodModel> LoadFood()
+        {
+            using(IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<FoodModel>("select * from Food", new DynamicParameters());
+                return output.ToList();
+            }
+        }
+
+        public static void SaveFood(FoodModel food)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Execute("insert into Food (Name, Calories, Proteins, Fats, Carbohydrates) values(@Name, @Calories, @Proteins, @Fats, @Carbohydrates)", food);
+            }
+        }
+
+        private static string LoadConnectionString(string id = "Default")
+        {
+            return ConfigurationManager.ConnectionStrings[id].ConnectionString;
+        }
+    }
+}

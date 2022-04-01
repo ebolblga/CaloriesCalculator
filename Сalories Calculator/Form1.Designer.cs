@@ -36,12 +36,18 @@ namespace Сalories_Calculator
             this.bRefreshList = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.CaloriesTextBox = new System.Windows.Forms.TextBox();
+            this.ProteinsTextBox = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.FatsTextBox = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.CarbohydratesTextBox = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // bAdd
             // 
             this.bAdd.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.bAdd.Location = new System.Drawing.Point(100, 137);
+            this.bAdd.Location = new System.Drawing.Point(12, 487);
             this.bAdd.Name = "bAdd";
             this.bAdd.Size = new System.Drawing.Size(87, 20);
             this.bAdd.TabIndex = 0;
@@ -106,13 +112,67 @@ namespace Сalories_Calculator
             this.CaloriesTextBox.Size = new System.Drawing.Size(171, 21);
             this.CaloriesTextBox.TabIndex = 5;
             // 
+            // ProteinsTextBox
+            // 
+            this.ProteinsTextBox.Location = new System.Drawing.Point(16, 149);
+            this.ProteinsTextBox.Name = "ProteinsTextBox";
+            this.ProteinsTextBox.Size = new System.Drawing.Size(171, 21);
+            this.ProteinsTextBox.TabIndex = 5;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(13, 131);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(52, 15);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Proteins";
+            // 
+            // FatsTextBox
+            // 
+            this.FatsTextBox.Location = new System.Drawing.Point(16, 207);
+            this.FatsTextBox.Name = "FatsTextBox";
+            this.FatsTextBox.Size = new System.Drawing.Size(171, 21);
+            this.FatsTextBox.TabIndex = 5;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(13, 189);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(29, 15);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Fats";
+            // 
+            // CarbohydratesTextBox
+            // 
+            this.CarbohydratesTextBox.Location = new System.Drawing.Point(16, 265);
+            this.CarbohydratesTextBox.Name = "CarbohydratesTextBox";
+            this.CarbohydratesTextBox.Size = new System.Drawing.Size(171, 21);
+            this.CarbohydratesTextBox.TabIndex = 5;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(13, 247);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(85, 15);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Carbohydrates";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(47)))), ((int)(((byte)(47)))));
             this.ClientSize = new System.Drawing.Size(933, 519);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.CarbohydratesTextBox);
+            this.Controls.Add(this.FatsTextBox);
+            this.Controls.Add(this.ProteinsTextBox);
             this.Controls.Add(this.CaloriesTextBox);
             this.Controls.Add(this.bRefreshList);
             this.Controls.Add(this.listFoodListBox);
@@ -138,6 +198,12 @@ namespace Сalories_Calculator
         private System.Windows.Forms.Button bRefreshList;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox CaloriesTextBox;
+        private System.Windows.Forms.TextBox ProteinsTextBox;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox FatsTextBox;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox CarbohydratesTextBox;
+        private System.Windows.Forms.Label label5;
     }
 }
 

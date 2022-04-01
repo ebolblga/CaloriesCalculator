@@ -22,9 +22,11 @@ namespace Сalories_Calculator
 
         private void LoadFoodList()
         {
-            food.Add(new FoodModel { Name = "Балтика 7 Классическая", Calories = 45, Proteins = 0, Fats = 0, Carbohydrates = 3.5 });
-            food.Add(new FoodModel { Name = "Балтика Авторское", Calories = 45, Proteins = 0, Fats = 0, Carbohydrates = 3.5 });
-            food.Add(new FoodModel { Name = "Балтика 9 Крепкое", Calories = 60, Proteins = 0, Fats = 0, Carbohydrates = 4.5 });
+            //food.Add(new FoodModel { Name = "Балтика 7 Классическая", Calories = 45, Proteins = 0, Fats = 0, Carbohydrates = 3.5 });
+            //food.Add(new FoodModel { Name = "Балтика Авторское", Calories = 45, Proteins = 0, Fats = 0, Carbohydrates = 3.5 });
+            //food.Add(new FoodModel { Name = "Балтика 9 Крепкое", Calories = 60, Proteins = 0, Fats = 0, Carbohydrates = 4.5 });
+
+            food = SqliteDataAccess.LoadFood();
 
             WireUpFoodList();
         }
@@ -47,12 +49,20 @@ namespace Сalories_Calculator
 
             f.Name = NameTextBox.Text;
             f.Calories = Convert.ToInt32(CaloriesTextBox.Text);
+            f.Proteins = Convert.ToDouble(ProteinsTextBox.Text);
+            f.Fats = Convert.ToDouble(FatsTextBox.Text);
+            f.Carbohydrates = Convert.ToDouble(CarbohydratesTextBox.Text);
 
-            food.Add(f);
-            WireUpFoodList();
+            //food.Add(f);
+            //WireUpFoodList();
+            SqliteDataAccess.SaveFood(f);
 
             NameTextBox.Text = "";
             CaloriesTextBox.Text = "";
+            ProteinsTextBox.Text = "";
+            FatsTextBox.Text = "";
+            CarbohydratesTextBox.Text = "";
+            LoadFoodList();
         }
     }
 }
