@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Сalories_Calculator
 {
@@ -21,6 +22,7 @@ namespace Сalories_Calculator
 
             LoadFoodList();
             dateTimePicker1.MaxDate = DateTime.Today;
+            ChartRender();
         }
 
         private void LoadFoodList()
@@ -39,11 +41,18 @@ namespace Сalories_Calculator
             listFoodListBox.DataSource = null;
             listFoodListBox.DataSource = food;
             listFoodListBox.DisplayMember = "FoodCalories";
+
+            //dataGridView.AutoGenerateColumns = false;
+            //dataGridView.DataSource = null;
+            //dataGridView.DataSource = food;
         }
 
         private void bRefreshList_Click(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
             LoadFoodList();
+            ChartRender();
+            this.Cursor = Cursors.Default;
         }
 
         private void bAdd_Click(object sender, EventArgs e)
@@ -85,8 +94,75 @@ namespace Сalories_Calculator
             CarbohydratesTextBox.Text = "";
 
             LoadFoodList();
+            ChartRender();
         }
 
+        private void ChartRender()
+        {
+            chart1.Series[0].Points.Clear();
+            chart1.Series.Clear();
+            chart1.ChartAreas.Clear();
+
+            int sizeOfList = food.Count;
+            double[] array = new double[sizeOfList];
+            string[] dateArray = new string[sizeOfList];
+
+            int day;
+            int month;
+            int year;
+
+            for (int i = 0; i < sizeOfList; ++i)
+            {
+                array[i] = food[i].Amount / 100 * food[i].Calories;
+                int date = food[i].Date;
+                day = date % 100;
+                date /= 100;
+                month = date % 100;
+                date /= 100;
+                year = date;
+                dateArray[i] = day.ToString("00") + "." + month.ToString("00") + "." + date.ToString("0000");
+            }
+
+            ChartArea area = new ChartArea();
+            chart1.ChartAreas.Add(area);
+
+            Series series = new Series();
+            series.ChartType = SeriesChartType.Line;
+            series.Name = "series";
+            series.ChartArea = area.Name;
+            chart1.Series.Add(series);
+
+            for (int i = 0; i < sizeOfList; ++i)
+            {
+                chart1.Series["series"].Points.AddXY(dateArray[i], array[i]);
+            }
+
+            double minimum = array[0];
+            double maximum = array[0];
+            for (int i = 1; i < sizeOfList; ++i)
+            {
+                if (array[i] < minimum)
+                    minimum = array[i];
+                if (array[i] > maximum)
+                    maximum = array[i];
+            }
+
+            area.RecalculateAxesScale();
+            area.AxisY.Minimum = Convert.ToInt32(minimum - 10);
+            area.AxisY.Maximum = Convert.ToInt32(maximum + 10);
+            area.AxisX.Minimum = 1;
+            area.AxisX.Maximum = sizeOfList;
+
+            area.Position.X = 0;
+            area.Position.Width = 100;
+            area.Position.Height = 100;
+            area.Position.Y = 0;
+
+            series.Color = Color.FromArgb(165, 0, 13);
+            series.BorderWidth = 2;
+            area.BackColor = Color.Transparent;
+        }
+        
         #region cosmetics
         protected override void OnPaintBackground(PaintEventArgs e)
         {
