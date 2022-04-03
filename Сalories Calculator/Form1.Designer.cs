@@ -51,6 +51,7 @@ namespace Сalories_Calculator
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label7 = new System.Windows.Forms.Label();
+            this.bDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -253,6 +254,19 @@ namespace Сalories_Calculator
             this.label7.TabIndex = 11;
             this.label7.Text = "Дата";
             // 
+            // bDelete
+            // 
+            this.bDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.bDelete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(0)))), ((int)(((byte)(13)))));
+            this.bDelete.Location = new System.Drawing.Point(455, 382);
+            this.bDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.bDelete.Name = "bDelete";
+            this.bDelete.Size = new System.Drawing.Size(99, 24);
+            this.bDelete.TabIndex = 12;
+            this.bDelete.Text = "Удалить";
+            this.bDelete.UseVisualStyleBackColor = true;
+            this.bDelete.Click += new System.EventHandler(this.bDelete_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
@@ -260,6 +274,7 @@ namespace Сalories_Calculator
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(47)))), ((int)(((byte)(47)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(1066, 623);
+            this.Controls.Add(this.bDelete);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.dateTimePicker1);
@@ -313,6 +328,7 @@ namespace Сalories_Calculator
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button bDelete;
     }
 }
 

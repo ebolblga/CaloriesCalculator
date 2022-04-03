@@ -189,19 +189,31 @@ namespace Сalories_Calculator
         }
         
         #region cosmetics
-        protected override void OnPaintBackground(PaintEventArgs e)
+        protected override void OnPaintBackground(PaintEventArgs e)//отрисовка градиента
         {
             using (LinearGradientBrush brush = new LinearGradientBrush(this.ClientRectangle, Color.FromArgb(236, 55, 110), Color.FromArgb(245, 177, 97), 135F))
-            //using (LinearGradientBrush brush = new LinearGradientBrush(this.ClientRectangle, Color.FromArgb(255, 185, 162), Color.FromArgb(255, 237, 212), 45F))
             {
                 e.Graphics.FillRectangle(brush, this.ClientRectangle);
             }
         }
 
-        private void Form1_Resize(object sender, EventArgs e)
+        private void Form1_Resize(object sender, EventArgs e)//обновление градиента при изменении размера
         {
             this.Invalidate();
         }
         #endregion
+
+        private void bDelete_Click(object sender, EventArgs e)//удаление строки
+        {
+            if (listFoodListBox.SelectedIndex != -1)
+            {
+                SqliteDataAccess.DeleteFood(food[listFoodListBox.SelectedIndex].Id);
+
+                LoadFoodList();
+                ChartRender();
+            }
+            else
+                MessageBox.Show("Nothing is selected", "Error");
+        }
     }
 }
