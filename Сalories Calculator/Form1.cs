@@ -15,6 +15,16 @@ namespace Сalories_Calculator
     public partial class Form1 : Form
     {
         List<FoodModel> food = new List<FoodModel>();
+
+        public class calArray//список дат
+        {
+            public int index { get; set; }
+
+            public int value { get; set; }
+
+            public string date { get; set; }
+        }
+
         public Form1()
         {
             InitializeComponent();
@@ -25,7 +35,7 @@ namespace Сalories_Calculator
             ChartRender();
         }
 
-        private void LoadFoodList()
+        private void LoadFoodList()//загружает бд в прогу
         {
             //food.Add(new FoodModel { Name = "Балтика 7 Классическая", Calories = 45, Proteins = 0, Fats = 0, Carbohydrates = 3.5 });
             //food.Add(new FoodModel { Name = "Балтика Авторское", Calories = 45, Proteins = 0, Fats = 0, Carbohydrates = 3.5 });
@@ -36,18 +46,14 @@ namespace Сalories_Calculator
             WireUpFoodList();
         }
 
-        private void WireUpFoodList()
+        private void WireUpFoodList()//заполняет listBox
         {
             listFoodListBox.DataSource = null;
             listFoodListBox.DataSource = food;
             listFoodListBox.DisplayMember = "FoodCalories";
-
-            //dataGridView.AutoGenerateColumns = false;
-            //dataGridView.DataSource = null;
-            //dataGridView.DataSource = food;
         }
 
-        private void bRefreshList_Click(object sender, EventArgs e)
+        private void bRefreshList_Click(object sender, EventArgs e)//обновляет listBox и график
         {
             this.Cursor = Cursors.WaitCursor;
             LoadFoodList();
@@ -55,7 +61,7 @@ namespace Сalories_Calculator
             this.Cursor = Cursors.Default;
         }
 
-        private void bAdd_Click(object sender, EventArgs e)
+        private void bAdd_Click(object sender, EventArgs e)//добавление еды
         {
             FoodModel f = new FoodModel();
 
@@ -97,30 +103,48 @@ namespace Сalories_Calculator
             ChartRender();
         }
 
-        private void ChartRender()
+        private void ChartRender()//отрисовка графика
         {
             chart1.Series[0].Points.Clear();
             chart1.Series.Clear();
             chart1.ChartAreas.Clear();
 
             int sizeOfList = food.Count;
-            double[] array = new double[sizeOfList];
-            string[] dateArray = new string[sizeOfList];
 
-            int day;
-            int month;
-            int year;
+            List<calArray> calList = new List<calArray>();
 
+            bool flag = false;
             for (int i = 0; i < sizeOfList; ++i)
             {
-                array[i] = food[i].Amount / 100 * food[i].Calories;
-                int date = food[i].Date;
-                day = date % 100;
-                date /= 100;
-                month = date % 100;
-                date /= 100;
-                year = date;
-                dateArray[i] = day.ToString("00") + "." + month.ToString("00") + "." + date.ToString("0000");
+                flag = false;
+                for (int j = 0; j < calList.Count; ++j)
+                {
+                    if (calList[j].index == food[i].Date)
+                    {
+                        calList[j].value += food[i].Amount / 100 * food[i].Calories;
+
+                        int date = food[i].Date;
+                        int day = date % 100;
+                        date /= 100;
+                        int month = date % 100;
+                        date /= 100;
+                        calList[j].date = day.ToString("00") + "." + month.ToString("00") + "." + date.ToString("0000");
+
+                        flag = true;
+                        break;
+                    }
+                }
+
+                if (flag == false)
+                {
+                    int date = food[i].Date;
+                    int day = date % 100;
+                    date /= 100;
+                    int month = date % 100;
+                    date /= 100;
+
+                    calList.Add(new calArray() { index = food[i].Date, value = food[i].Amount / 100 * food[i].Calories, date = day.ToString("00") + "." + month.ToString("00") + "." + date.ToString("0000") });
+                }
             }
 
             ChartArea area = new ChartArea();
@@ -132,32 +156,33 @@ namespace Сalories_Calculator
             series.ChartArea = area.Name;
             chart1.Series.Add(series);
 
-            for (int i = 0; i < sizeOfList; ++i)
-            {
-                chart1.Series["series"].Points.AddXY(dateArray[i], array[i]);
-            }
+            calList.Sort((x, y) => x.index.CompareTo(y.index));
 
-            double minimum = array[0];
-            double maximum = array[0];
-            for (int i = 1; i < sizeOfList; ++i)
+            for (int i = 0; i < calList.Count; ++i)
+                chart1.Series["series"].Points.AddXY(calList[i].date, calList[i].value);
+
+            double minimum = calList[0].value;
+            double maximum = calList[0].value;
+            for (int i = 1; i < calList.Count; ++i)
             {
-                if (array[i] < minimum)
-                    minimum = array[i];
-                if (array[i] > maximum)
-                    maximum = array[i];
+                if (calList[i].value < minimum)
+                    minimum = calList[i].value;
+                if (calList[i].value > maximum)
+                    maximum = calList[i].value;
             }
 
             area.RecalculateAxesScale();
             area.AxisY.Minimum = Convert.ToInt32(minimum - 10);
             area.AxisY.Maximum = Convert.ToInt32(maximum + 10);
             area.AxisX.Minimum = 1;
-            area.AxisX.Maximum = sizeOfList;
+            area.AxisX.Maximum = calList.Count;
 
             area.Position.X = 0;
             area.Position.Width = 100;
             area.Position.Height = 100;
             area.Position.Y = 0;
 
+            series.IsValueShownAsLabel = true;
             series.Color = Color.FromArgb(165, 0, 13);
             series.BorderWidth = 2;
             area.BackColor = Color.Transparent;
