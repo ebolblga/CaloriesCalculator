@@ -12,6 +12,8 @@ namespace Сalories_Calculator
 
         public string Name { get; set; }
 
+        public int Amount { get; set; }
+
         public int Calories { get; set; }
 
         public double Proteins { get; set; }
@@ -19,6 +21,9 @@ namespace Сalories_Calculator
         public double Fats { get; set; }
 
         public double Carbohydrates { get; set; }
+
+        public int Date { get; set; }
+
 
         public string FoodCalories
         {

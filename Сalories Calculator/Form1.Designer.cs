@@ -29,6 +29,10 @@ namespace Сalories_Calculator
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.bAdd = new System.Windows.Forms.Button();
             this.NameTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -42,14 +46,21 @@ namespace Сalories_Calculator
             this.label3 = new System.Windows.Forms.Label();
             this.CarbohydratesTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.AmountTextBox = new System.Windows.Forms.TextBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.button1 = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // bAdd
             // 
-            this.bAdd.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.bAdd.Location = new System.Drawing.Point(12, 487);
+            this.bAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(0)))), ((int)(((byte)(13)))));
+            this.bAdd.Location = new System.Drawing.Point(18, 318);
+            this.bAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.bAdd.Name = "bAdd";
-            this.bAdd.Size = new System.Drawing.Size(87, 20);
+            this.bAdd.Size = new System.Drawing.Size(415, 25);
             this.bAdd.TabIndex = 0;
             this.bAdd.Text = "Add";
             this.bAdd.UseVisualStyleBackColor = true;
@@ -57,40 +68,46 @@ namespace Сalories_Calculator
             // 
             // NameTextBox
             // 
-            this.NameTextBox.Location = new System.Drawing.Point(16, 33);
+            this.NameTextBox.Location = new System.Drawing.Point(18, 40);
+            this.NameTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.NameTextBox.Name = "NameTextBox";
-            this.NameTextBox.Size = new System.Drawing.Size(171, 21);
+            this.NameTextBox.Size = new System.Drawing.Size(195, 23);
             this.NameTextBox.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 15);
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(15, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 15);
+            this.label1.Size = new System.Drawing.Size(49, 18);
             this.label1.TabIndex = 2;
             this.label1.Text = "Name";
             // 
             // listFoodListBox
             // 
-            this.listFoodListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.listFoodListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listFoodListBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.listFoodListBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.listFoodListBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(195)))), ((int)(((byte)(160)))));
+            this.listFoodListBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listFoodListBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(0)))), ((int)(((byte)(13)))));
             this.listFoodListBox.FormattingEnabled = true;
-            this.listFoodListBox.ItemHeight = 15;
-            this.listFoodListBox.Location = new System.Drawing.Point(543, 12);
+            this.listFoodListBox.ItemHeight = 18;
+            this.listFoodListBox.Location = new System.Drawing.Point(455, 14);
+            this.listFoodListBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.listFoodListBox.Name = "listFoodListBox";
-            this.listFoodListBox.Size = new System.Drawing.Size(378, 469);
+            this.listFoodListBox.Size = new System.Drawing.Size(597, 360);
             this.listFoodListBox.TabIndex = 3;
             // 
             // bRefreshList
             // 
             this.bRefreshList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bRefreshList.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.bRefreshList.Location = new System.Drawing.Point(834, 487);
+            this.bRefreshList.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(0)))), ((int)(((byte)(13)))));
+            this.bRefreshList.Location = new System.Drawing.Point(955, 382);
+            this.bRefreshList.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.bRefreshList.Name = "bRefreshList";
-            this.bRefreshList.Size = new System.Drawing.Size(87, 20);
+            this.bRefreshList.Size = new System.Drawing.Size(99, 24);
             this.bRefreshList.TabIndex = 4;
             this.bRefreshList.Text = "Refresh";
             this.bRefreshList.UseVisualStyleBackColor = true;
@@ -99,73 +116,156 @@ namespace Сalories_Calculator
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 73);
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(0)))), ((int)(((byte)(13)))));
+            this.label2.Location = new System.Drawing.Point(234, 18);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(50, 15);
+            this.label2.Size = new System.Drawing.Size(60, 18);
             this.label2.TabIndex = 6;
             this.label2.Text = "Calories";
             // 
             // CaloriesTextBox
             // 
-            this.CaloriesTextBox.Location = new System.Drawing.Point(16, 91);
+            this.CaloriesTextBox.Location = new System.Drawing.Point(238, 40);
+            this.CaloriesTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.CaloriesTextBox.Name = "CaloriesTextBox";
-            this.CaloriesTextBox.Size = new System.Drawing.Size(171, 21);
+            this.CaloriesTextBox.Size = new System.Drawing.Size(195, 23);
             this.CaloriesTextBox.TabIndex = 5;
             // 
             // ProteinsTextBox
             // 
-            this.ProteinsTextBox.Location = new System.Drawing.Point(16, 149);
+            this.ProteinsTextBox.Location = new System.Drawing.Point(238, 109);
+            this.ProteinsTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ProteinsTextBox.Name = "ProteinsTextBox";
-            this.ProteinsTextBox.Size = new System.Drawing.Size(171, 21);
+            this.ProteinsTextBox.Size = new System.Drawing.Size(195, 23);
             this.ProteinsTextBox.TabIndex = 5;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 131);
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Location = new System.Drawing.Point(234, 88);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(52, 15);
+            this.label4.Size = new System.Drawing.Size(113, 18);
             this.label4.TabIndex = 6;
-            this.label4.Text = "Proteins";
+            this.label4.Text = "Proteins, g/100g";
             // 
             // FatsTextBox
             // 
-            this.FatsTextBox.Location = new System.Drawing.Point(16, 207);
+            this.FatsTextBox.Location = new System.Drawing.Point(238, 179);
+            this.FatsTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.FatsTextBox.Name = "FatsTextBox";
-            this.FatsTextBox.Size = new System.Drawing.Size(171, 21);
+            this.FatsTextBox.Size = new System.Drawing.Size(195, 23);
             this.FatsTextBox.TabIndex = 5;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 189);
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Location = new System.Drawing.Point(234, 157);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(29, 15);
+            this.label3.Size = new System.Drawing.Size(86, 18);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Fats";
+            this.label3.Text = "Fats, g/100g";
             // 
             // CarbohydratesTextBox
             // 
-            this.CarbohydratesTextBox.Location = new System.Drawing.Point(16, 265);
+            this.CarbohydratesTextBox.Location = new System.Drawing.Point(238, 248);
+            this.CarbohydratesTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.CarbohydratesTextBox.Name = "CarbohydratesTextBox";
-            this.CarbohydratesTextBox.Size = new System.Drawing.Size(171, 21);
+            this.CarbohydratesTextBox.Size = new System.Drawing.Size(195, 23);
             this.CarbohydratesTextBox.TabIndex = 5;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 247);
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Location = new System.Drawing.Point(234, 227);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(85, 15);
+            this.label5.Size = new System.Drawing.Size(155, 18);
             this.label5.TabIndex = 6;
-            this.label5.Text = "Carbohydrates";
+            this.label5.Text = "Carbohydrates, g/100g";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Location = new System.Drawing.Point(15, 88);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(77, 18);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "Amount, g";
+            // 
+            // AmountTextBox
+            // 
+            this.AmountTextBox.Location = new System.Drawing.Point(18, 109);
+            this.AmountTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.AmountTextBox.Name = "AmountTextBox";
+            this.AmountTextBox.Size = new System.Drawing.Size(195, 23);
+            this.AmountTextBox.TabIndex = 7;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CalendarForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(0)))), ((int)(((byte)(13)))));
+            this.dateTimePicker1.CalendarTitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.dateTimePicker1.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(18, 179);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dateTimePicker1.MinDate = new System.DateTime(2022, 1, 1, 0, 0, 0, 0);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(195, 23);
+            this.dateTimePicker1.TabIndex = 9;
+            this.dateTimePicker1.Value = new System.DateTime(2022, 4, 3, 0, 0, 0, 0);
+            // 
+            // chart1
+            // 
+            this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.chart1.BackColor = System.Drawing.Color.Transparent;
+            this.chart1.BorderlineColor = System.Drawing.Color.Transparent;
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Enabled = false;
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(18, 413);
+            this.chart1.Name = "chart1";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.IsVisibleInLegend = false;
+            series1.LabelForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(0)))), ((int)(((byte)(13)))));
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
+            this.chart1.Size = new System.Drawing.Size(1036, 198);
+            this.chart1.TabIndex = 10;
+            this.chart1.Text = "chart1";
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(0)))), ((int)(((byte)(13)))));
+            this.button1.Location = new System.Drawing.Point(18, 382);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(99, 24);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Refresh";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(47)))), ((int)(((byte)(47)))));
-            this.ClientSize = new System.Drawing.Size(933, 519);
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.ClientSize = new System.Drawing.Size(1066, 623);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.chart1);
+            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.AmountTextBox);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
@@ -179,11 +279,16 @@ namespace Сalories_Calculator
             this.Controls.Add(this.label1);
             this.Controls.Add(this.NameTextBox);
             this.Controls.Add(this.bAdd);
-            this.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.DoubleBuffered = true;
+            this.Font = new System.Drawing.Font("Montserrat", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(0)))), ((int)(((byte)(13)))));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Calories Calculator";
+            this.Resize += new System.EventHandler(this.Form1_Resize);
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -204,6 +309,11 @@ namespace Сalories_Calculator
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox CarbohydratesTextBox;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox AmountTextBox;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.Button button1;
     }
 }
 

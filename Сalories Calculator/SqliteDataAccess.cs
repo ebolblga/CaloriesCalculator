@@ -25,7 +25,7 @@ namespace Сalories_Calculator
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                cnn.Execute("insert into Food (Name, Calories, Proteins, Fats, Carbohydrates) values(@Name, @Calories, @Proteins, @Fats, @Carbohydrates)", food);
+                cnn.Execute("insert into Food (Name, Amount, Calories, Proteins, Fats, Carbohydrates, Date) values(@Name, @Amount, @Calories, @Proteins, @Fats, @Carbohydrates, @Date)", food);
             }
         }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,8 +17,10 @@ namespace Сalories_Calculator
         public Form1()
         {
             InitializeComponent();
+            DoubleBuffered = true;
 
             LoadFoodList();
+            dateTimePicker1.MaxDate = DateTime.Today;
         }
 
         private void LoadFoodList()
@@ -47,11 +50,29 @@ namespace Сalories_Calculator
         {
             FoodModel f = new FoodModel();
 
-            f.Name = NameTextBox.Text;
-            f.Calories = Convert.ToInt32(CaloriesTextBox.Text);
-            f.Proteins = Convert.ToDouble(ProteinsTextBox.Text);
-            f.Fats = Convert.ToDouble(FatsTextBox.Text);
-            f.Carbohydrates = Convert.ToDouble(CarbohydratesTextBox.Text);
+
+            if (NameTextBox.Text != "")
+                f.Name = NameTextBox.Text;
+            else
+            {
+                MessageBox.Show("Name is needed", "Error");
+                return;
+            }
+
+            try
+            {
+                //f.Amount = Convert.ToInt32(AmountTextBox.Text);
+                //f.Calories = Convert.ToInt32(CaloriesTextBox.Text);
+                //f.Proteins = Convert.ToDouble(ProteinsTextBox.Text);
+                //f.Fats = Convert.ToDouble(FatsTextBox.Text);
+                //f.Carbohydrates = Convert.ToDouble(CarbohydratesTextBox.Text);
+                f.Date = Convert.ToInt32(dateTimePicker1.Value.Year.ToString("0000") + dateTimePicker1.Value.Month.ToString("00") + dateTimePicker1.Value.Day.ToString("00"));
+            }
+            catch
+            {
+                MessageBox.Show("Parameters are incorrect", "Error");
+                return;
+            }
 
             //food.Add(f);
             //WireUpFoodList();
@@ -62,7 +83,24 @@ namespace Сalories_Calculator
             ProteinsTextBox.Text = "";
             FatsTextBox.Text = "";
             CarbohydratesTextBox.Text = "";
+
             LoadFoodList();
         }
+
+        #region cosmetics
+        protected override void OnPaintBackground(PaintEventArgs e)
+        {
+            using (LinearGradientBrush brush = new LinearGradientBrush(this.ClientRectangle, Color.FromArgb(236, 55, 110), Color.FromArgb(245, 177, 97), 135F))
+            //using (LinearGradientBrush brush = new LinearGradientBrush(this.ClientRectangle, Color.FromArgb(255, 185, 162), Color.FromArgb(255, 237, 212), 45F))
+            {
+                e.Graphics.FillRectangle(brush, this.ClientRectangle);
+            }
+        }
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            this.Invalidate();
+        }
+        #endregion
     }
 }
