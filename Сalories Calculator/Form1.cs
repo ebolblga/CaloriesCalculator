@@ -209,7 +209,7 @@ namespace Сalories_Calculator
             chart1.ChartAreas.Add(area);
 
             Series series = new Series();
-            series.ChartType = SeriesChartType.Line;
+            series.ChartType = SeriesChartType.Spline;
             series.Name = "series";
             series.ChartArea = area.Name;
             chart1.Series.Add(series);
@@ -240,7 +240,20 @@ namespace Сalories_Calculator
             area.Position.Height = 100;
             area.Position.Y = 0;
 
+            area.AxisX.LineColor = Color.FromArgb(80, 80, 80);
+            area.AxisY.LineColor = Color.FromArgb(80, 80, 80);
+            area.AxisX.MajorGrid.LineColor = Color.FromArgb(80, 80, 80);
+            area.AxisY.MajorGrid.LineColor = Color.FromArgb(80, 80, 80);
+            area.AxisX.InterlacedColor = Color.FromArgb(80, 80, 80);
+            area.AxisY.InterlacedColor = Color.FromArgb(80, 80, 80);
+
+            area.AxisX.Title = "День";
+            //area.AxisX.TitleForeColor = Color.FromArgb(47, 47, 47);
+            area.AxisY.Title = "Общее кол-во ккал";
+            //area.AxisY.TitleForeColor = Color.FromArgb(47, 47, 47);
+
             series.IsValueShownAsLabel = true;
+            //series.LabelForeColor = Color.FromArgb(47, 47, 47);
             series.Color = Color.FromArgb(165, 0, 13);
             series.BorderWidth = 2;
             area.BackColor = Color.Transparent;

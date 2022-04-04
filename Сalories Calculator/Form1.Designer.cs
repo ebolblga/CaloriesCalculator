@@ -243,7 +243,7 @@ namespace Сalories_Calculator
             this.chart1.Location = new System.Drawing.Point(18, 413);
             this.chart1.Name = "chart1";
             series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
             series1.IsValueShownAsLabel = true;
             series1.IsVisibleInLegend = false;
             series1.LabelForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(0)))), ((int)(((byte)(13)))));
