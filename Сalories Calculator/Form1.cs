@@ -70,30 +70,88 @@ namespace Сalories_Calculator
                 f.Name = NameTextBox.Text;
             else
             {
-                MessageBox.Show("Name is needed", "Error");
+                MessageBox.Show("Нужно название продука", "Ошибка");
                 return;
             }
 
-            try
+            if(AmountTextBox.Text != "")
             {
-                //f.Amount = Convert.ToInt32(AmountTextBox.Text);
-                //f.Calories = Convert.ToInt32(CaloriesTextBox.Text);
-                //f.Proteins = Convert.ToDouble(ProteinsTextBox.Text);
-                //f.Fats = Convert.ToDouble(FatsTextBox.Text);
-                //f.Carbohydrates = Convert.ToDouble(CarbohydratesTextBox.Text);
-                f.Date = Convert.ToInt32(dateTimePicker1.Value.Year.ToString("0000") + dateTimePicker1.Value.Month.ToString("00") + dateTimePicker1.Value.Day.ToString("00"));
-            }
-            catch
-            {
-                MessageBox.Show("Parameters are incorrect", "Error");
-                return;
+                try
+                {
+                    f.Amount = Convert.ToInt32(AmountTextBox.Text);
+                }
+                catch
+                {
+                    AmountTextBox.Text = "";
+                    MessageBox.Show("Параметр сколько неверен", "Ошибка");
+                    return;
+                }
             }
 
+            if (CaloriesTextBox.Text != "")
+            {
+                try
+                {
+                    f.Calories = Convert.ToInt32(CaloriesTextBox.Text);
+                }
+                catch
+                {
+                    CaloriesTextBox.Text = "";
+                    MessageBox.Show("Параметр калорий неверен", "Ошибка");
+                    return;
+                }
+            }
+
+            if (ProteinsTextBox.Text != "")
+            {
+                try
+                {
+                    f.Proteins = Convert.ToDouble(ProteinsTextBox.Text);
+                }
+                catch
+                {
+                    ProteinsTextBox.Text = "";
+                    MessageBox.Show("Параметр белка неверен", "Ошибка");
+                    return;
+                }
+            }
+
+            if (FatsTextBox.Text != "")
+            {
+                try
+                {
+                    f.Fats = Convert.ToDouble(FatsTextBox.Text);
+                }
+                catch
+                {
+                    FatsTextBox.Text = "";
+                    MessageBox.Show("Параметр жира неверен", "Ошибка");
+                    return;
+                }
+            }
+
+            if (CarbohydratesTextBox.Text != "")
+            {
+                try
+                {
+                    f.Carbohydrates = Convert.ToDouble(CarbohydratesTextBox.Text);
+                }
+                catch
+                {
+                    CarbohydratesTextBox.Text = "";
+                    MessageBox.Show("Параметр углеводов неверен", "Ошибка");
+                    return;
+                }
+            }
+
+            f.Date = Convert.ToInt32(dateTimePicker1.Value.Year.ToString("0000") + dateTimePicker1.Value.Month.ToString("00") + dateTimePicker1.Value.Day.ToString("00"));
+        
             //food.Add(f);
             //WireUpFoodList();
             SqliteDataAccess.SaveFood(f);
 
             NameTextBox.Text = "";
+            AmountTextBox.Text = "";
             CaloriesTextBox.Text = "";
             ProteinsTextBox.Text = "";
             FatsTextBox.Text = "";
@@ -187,21 +245,6 @@ namespace Сalories_Calculator
             series.BorderWidth = 2;
             area.BackColor = Color.Transparent;
         }
-        
-        #region cosmetics
-        protected override void OnPaintBackground(PaintEventArgs e)//отрисовка градиента
-        {
-            using (LinearGradientBrush brush = new LinearGradientBrush(this.ClientRectangle, Color.FromArgb(236, 55, 110), Color.FromArgb(245, 177, 97), 135F))
-            {
-                e.Graphics.FillRectangle(brush, this.ClientRectangle);
-            }
-        }
-
-        private void Form1_Resize(object sender, EventArgs e)//обновление градиента при изменении размера
-        {
-            this.Invalidate();
-        }
-        #endregion
 
         private void bDelete_Click(object sender, EventArgs e)//удаление строки
         {
@@ -215,5 +258,40 @@ namespace Сalories_Calculator
             else
                 MessageBox.Show("Nothing is selected", "Error");
         }
+
+        private void NameTextBox_Leave_1(object sender, EventArgs e)//проверка есть ли продукт в бд
+        {
+            for (int i = 0; i < food.Count; ++i)
+            {
+                if (food[i].Name == NameTextBox.Text)
+                {
+                    CaloriesTextBox.Text = food[i].Calories.ToString();
+                    ProteinsTextBox.Text = food[i].Proteins.ToString();
+                    FatsTextBox.Text = food[i].Fats.ToString();
+                    CarbohydratesTextBox.Text = food[i].Carbohydrates.ToString();
+                    return;
+                }
+            }
+        }
+
+        #region cosmetics
+        protected override void OnPaintBackground(PaintEventArgs e)//отрисовка градиента
+        {
+            using (LinearGradientBrush brush = new LinearGradientBrush(this.ClientRectangle, Color.FromArgb(236, 55, 110), Color.FromArgb(245, 177, 97), 135F))
+            {
+                e.Graphics.FillRectangle(brush, this.ClientRectangle);
+            }
+        }
+
+        private void Form1_Resize(object sender, EventArgs e)//обновление градиента при изменении размера
+        {
+            this.Invalidate();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)//выход
+        {
+            this.Close();
+        }
+        #endregion
     }
 }

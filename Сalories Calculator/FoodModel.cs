@@ -29,7 +29,7 @@ namespace Сalories_Calculator
         {
             get
             {
-                return $"{ Name } \t { Calories } ккал\t { Proteins } г\t { Fats } г\t { Carbohydrates } г";
+                return $"{ Name, -40 } \t { Calories } ккал\t { Proteins } г\t { Fats } г\t { Carbohydrates } г\t { Amount/100*Calories } ккал";
             }
         }
     }

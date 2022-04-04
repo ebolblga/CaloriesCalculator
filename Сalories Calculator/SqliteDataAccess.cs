@@ -34,11 +34,11 @@ namespace Сalories_Calculator
             return ConfigurationManager.ConnectionStrings[id].ConnectionString;
         }
 
-        public static void DeleteFood(int index)
+        public static void DeleteFood(int id)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                cnn.Execute($"delete from Food where Id = { index }");
+                cnn.Execute($"delete from Food where Id = { id }");
             }
         }
     }
