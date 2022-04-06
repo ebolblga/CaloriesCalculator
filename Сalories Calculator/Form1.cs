@@ -16,6 +16,14 @@ namespace Сalories_Calculator
     {
         List<FoodModel> food = new List<FoodModel>();
 
+        //List<FoodModel> foodDaily = new List<FoodModel>();
+
+        public class foodDaily2
+        {
+            public int date { get; set; }
+            public List<FoodModel> daylist { get; set; }
+        }
+
         public class calArray//список дат
         {
             public int index { get; set; }
@@ -33,7 +41,37 @@ namespace Сalories_Calculator
             LoadFoodList();
             dateTimePicker1.MaxDate = DateTime.Today;
             ChartRender();
+            //DailyFoodList();
         }
+
+        //private void DailyFoodList()
+        //{
+        //    int sizeOfList = food.Count;
+        //    foodDaily2 f = new foodDaily2();
+
+        //    bool flag = false;
+        //    for (int i = 0; i < sizeOfList; ++i)
+        //    {
+        //        flag = false;
+        //        for (int j = 0; j < f.Count; ++j)
+        //        {
+        //            if (foodDaily2[j].Date == food[i].Date)
+        //            {
+
+
+        //                flag = true;
+        //                break;
+        //            }
+        //        }
+        //    }
+
+
+
+
+        //    listBox1.DataSource = null;
+        //    listBox1.DataSource = food;
+        //    listBox1.DisplayMember = "FoodCalories";
+        //}
 
         private void LoadFoodList()//загружает бд в прогу
         {
