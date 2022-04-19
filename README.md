@@ -1,5 +1,5 @@
 # Calories Calculator
-### Desktop App to calculate your daily calories on C# Windows Forms App (.NET Framework)
+### Desktop application to calculate your daily calories on C# Windows Forms App (.NET Framework)
 ![image](https://user-images.githubusercontent.com/82185066/162077470-6ac6def9-c0ac-49c5-9272-fbf9f6935708.png)
 
 
